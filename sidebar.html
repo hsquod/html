@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar - Fashion Blog Style</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Playfair+Display:400,700&display=swap" rel="stylesheet">
+    <style>
+        /* Stili Globali e Reset */
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            color: #888;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header e Navigazione */
+        .header {
+            text-align: center;
+            padding: 40px 0 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .site-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0 0 5px 0;
+        }
+
+        .site-description {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .main-nav ul li {
+            padding: 10px 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+        
+        /* Contenuto Principale (Main Layout) */
+        .content-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px 0;
+        }
+
+        .main-content {
+            flex: 3; /* Prende 3/4 dello spazio su desktop */
+            min-width: 0; /* Importante per il flex */
+            padding-right: 40px;
+        }
+
+        .sidebar {
+            flex: 1; /* Prende 1/4 dello spazio su desktop */
+            min-width: 250px;
+        }
+
+        /* Stile Articoli (Blog Posts) */
+        .post-article {
+            margin-bottom: 60px;
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 1px dotted #eee;
+        }
+
+        .post-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .post-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .post-title a {
+            font-size: 2.2em;
+            margin: 0 0 15px 0;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .post-excerpt {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        .read-more:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        /* Sidebar Widgets */
+        .widget {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #f9f9f9;
+        }
+
+        .widget h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .widget-bio p {
+            font-style: italic;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .widget-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .widget-list ul li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #eee;
+        }
+
+        .widget-list ul li a {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85em;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75em;
+            color: #999;
+        }
+
+        /* Media Queries per la Responsività */
+        @media (max-width: 900px) {
+            .content-wrap {
+                flex-direction: column;
+            }
+
+            .main-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .sidebar {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .site-title {
+                font-size: 2em;
+            }
+            .post-title a {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="site-title"><a href="#">SIDEBAR</a></h1>
+            <p class="site-description">Fashion Blog Style – Hi my name Jane Doe. I'm fashion blogger...</p>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Style</a></li>
+                    <li><a href="#">Personal Fashion</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-wrap container">
+        
+        <main class="main-content">
+            
+            
+             <article class="post-article">
+                <img src="http://fullmetalsmartwork.lovestoblog.com/myblog/wp-content/uploads/2026/06/channels4_banner.jpg" alt="Summer Casual Outfits" class="post-image">
+                <p class="post-meta">By Nome Autore in <a href="#">Trends</a> / 5 Comments</p>
+                <h2 class="post-title"><a href="#">Summer Casual Outfits</a></h2>
+                <div class="post-excerpt">
+                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot...</p>
+                    </div>
+                <a href="#" class="read-more">Continue Reading</a>
+            </article>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Page 1 of 4 | 
+                    <a href="#" style="font-family: 'Montserrat', sans-serif; margin: 0 5px;">2</a>
+                    <a href="#" style="font-family: 'Montserrat', sans-serif; margin: 0 5px;">3</a>
+                    <a href="#" style="font-family: 'Montserrat', sans-serif; margin: 0 5px;">4</a>
+                    <a href="#" style="font-family: 'Montserrat', sans-serif; margin-left: 10px;">Next »</a>
+                </p>
+            </div>
+
+        </main>
+
+        <aside class="sidebar">
+            
+            <div class="widget widget-bio">
+                <img src="http://fullmetalsmartwork.lovestoblog.com/myblog/wp-content/uploads/2026/06/Product-004-300x300-1.jpg" alt="Profilo" style="border-radius: 50%; display: block; margin: 0 auto 15px;">
+                <h3>Hi my name Jane.</h3>
+                <p>I'm fashion blogger live in Apulia, Italy. This is my deep blog, hopefully you enjoy read my article.</p>
+            </div>
+
+            <div class="widget widget-list">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Gallery (0)</a></li>
+                    <li><a href="#">Trends (0)</a></li>
+                    <li><a href="#">Tips (0)</a></li>
+                </ul>
+            </div>
+
+            <div class="widget widget-list">
+                <h3>Recent Posts</h3>
+                <ul>
+                    <li><a href="#">Shopping Bag New Collections</a></li>
+                    <li><a href="#">Perfect Suits For Your Daily Workout</a></li>
+                    <li><a href="#">Rai-Man Sunglasses Upcoming Release</a></li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <footer class="footer">
+        <p>Brands are the property of their respective owners. <!-- Don't Remove/Edit this. If you remove this you don't have permission to use this template. -->
+					Designed with ❤ by <a href="https://fullmetalsmartwork.com">Fullmetalsmartwork.com</a>
+					<!-- So Please don't remove this --></p>
+    </footer>
+
+</body>
+</html>

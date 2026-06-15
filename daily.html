@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Theme - HTML Static Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* --- RESET & VARIABILI --- */
+        :root {
+            --bg-color: #fcfbf9;      /* Sfondo morbido tipico del tema Yuna */
+            --text-main: #2b2b2b;     /* Testo scuro ma non nero assoluto */
+            --text-muted: #6b6b6b;    /* Testo secondario */
+            --accent: #e57c5d;        /* Colore d'accento terracotta/salmone */
+            --card-bg: #ffffff;
+            --border-color: #eae8e4;
+            --font-serif: 'Georgia', serif;
+            --font-sans: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER & NAVIGAZIONE --- */
+        header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+
+        .header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo a {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        /* --- HERO SEZION (In evidenza) --- */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 450px;
+            background-color: #ddd;
+            border-radius: 4px;
+            background-image: url('https://picsum.photos/600/450');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content .category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--text-main);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+        }
+
+        /* --- SEZIONE ARTICOLI (GRID) --- */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card .category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .card h3 a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .card h3 a:hover {
+            color: var(--accent);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .meta {
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .footer-widget h4 {
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-widget p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-widget ul {
+            list-style: none;
+        }
+
+        .footer-widget ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-widget ul a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-widget ul a:hover {
+            color: #fff;
+        }
+        
+        /* SEZIONE SOCIAL */
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333D4B;
+        }
+
+        .social-icons a:hover {
+            color: #ff4d5e;
+            transform: translateY(-3px);
+        }
+
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            background: #2a2a2a;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .grid-layout {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+            .hero-img {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-wrap {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header class="container">
+        <div class="header-wrap">
+            <div class="logo">
+                <a href="#">Daily<span>.</span></a>
+            </div>
+            <nav>
+                <div class="social-icons">
+                     <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+                   <a href="#" target="_blank" title="Telegram"><i class="fa-regular fa-paper-plane"></i></a>
+            <a href="#" target="_blank" title="Whebchat"><i class="fa fa-commenting"></i></a>
+            <a href="#" title="Email"><i class="far fa-envelope"></i></a>
+		 </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        
+        <!-- HERO AREA -->
+        <section class="hero-section">
+            <div class="hero-img"></div>
+            <div class="hero-content">
+                <span class="category">Storie In Evidenza</span>
+                <h1>Costruire un futuro sostenibile insieme.</h1>
+                <p>Il tema Daily combina un design minimale con la massima pulizia d'immagine, perfetto per chi vuole raccontare storie ed evidenziare progetti sociali con eleganza ed efficacia comunicativa.</p>
+                <a href="#" class="btn">Scopri di più</a>
+            </div>
+        </section>
+
+        <!-- GRID ARTICOLI -->
+        <section>
+            <h2 class="section-title">Ultimi Aggiornamenti</h2>
+            
+            <div class="grid-layout">
+                
+                <!-- CARD 1 -->
+                <article class="card">
+                    <div class="card-img" style="background-image: url('https://picsum.photos/400/300?random=1');"></div>
+                    <div class="card-body">
+                        <span class="category">Natura</span>
+                        <h3><a href="#">Preservare le foreste urbane</a></h3>
+                        <p>Un viaggio alla scoperta dei piccoli polmoni verdi che resistono e crescono nel cuore delle nostre città moderne.</p>
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> 16 Maggio 2026</span>
+                            <span><i class="far fa-user"></i> Redazione</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="card">
+                    <div class="card-img" style="background-image: url('https://picsum.photos/400/300?random=2');"></div>
+                    <div class="card-body">
+                        <span class="category">Comunità</span>
+                        <h3><a href="#">L'importanza della condivisione</a></h3>
+                        <p>Come i centri di quartiere e le piccole associazioni stanno reinventando il concetto di mutuo soccorso.</p>
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> 12 Maggio 2026</span>
+                            <span><i class="far fa-user"></i> Admin</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 3 -->
+                <article class="card">
+                    <div class="card-img" style="background-image: url('https://picsum.photos/400/300?random=3');"></div>
+                    <div class="card-body">
+                        <span class="category">Cultura</span>
+                        <h3><a href="#">Spazi d'arte aperti a tutti</a></h3>
+                        <p>Riqualificare vecchie strutture industriali abbandonate e trasformarle in laboratori creativi gratuiti.</p>
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> 08 Maggio 2026</span>
+                            <span><i class="far fa-user"></i> Autore</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-widget">
+                <h4>Daily Theme</h4>
+                <p>Un template pulito, minimale e solido ispirato al design per il sociale e la narrazione d'impatto. Creato per dare voce alle tue idee con eleganza.</p>
+               
+            </div>
+            <div class="footer-widget">
+                <h4>Esplora</h4>
+                <ul>
+                    <li><a href="#">Chi Siamo</a></li>
+                    <li><a href="#">Iniziative</a></li>
+                    <li><a href="#">Donazioni</a></li>
+                    <li><a href="#">Linee Guida</a></li>
+                </ul>
+            </div>
+            <div class="footer-widget">
+                <h4>Risorse</h4>
+                <ul>
+                    <li><a href="#">Documentazione</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Supporto</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright container">
+            <p>&copy; 2026 Daily Theme HTML Demo. All Rights Reserved. <!-- Don't Remove/Edit this. If you remove this you don't have permission to use this template. -->
+					Designed with ❤ by <a href="https://fullmetalsmartwork.com">Fullmetalsmartwork.com</a>
+					<!-- So Please don't remove this --></p>
+        </div>
+    </footer>
+
+</body>
+</html>
